@@ -27,7 +27,7 @@ public class ProtectedServlet extends HttpServlet {
 
         //根据当时授权的token对应的权限范围，做相应的处理动作
         //不同权限对应不同的操作
-        String[] scope = OauthServlet.tokenScopeMap.get(accessToken);
+        String[] scope = OauthServlet.tokenScopeMap.get(accessToken.substring(0,accessToken.indexOf('|')));
 
         StringBuffer sbuf = new StringBuffer();
         for(int i=0;i<scope.length;i++){

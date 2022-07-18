@@ -22,17 +22,17 @@ import java.util.UUID;
 public class OauthServlet extends HttpServlet {
 
     //模拟授权码、令牌等数据存储
-    static Map<String,String> codeMap =  new HashMap<String, String>();
-    static Map<String,String[]> codeScopeMap =  new HashMap<String, String[]>();
+    static Map<String,String> codeMap = new HashMap<>();
+    static Map<String,String[]> codeScopeMap = new HashMap<>();
 
-    static Map<String,String> tokenMap =  new HashMap<String, String>();
-    static Map<String,String[]> tokenScopeMap =  new HashMap<String, String[]>();
+    static Map<String,String> tokenMap = new HashMap<>();
+    static Map<String,String[]> tokenScopeMap = new HashMap<>();
 
-    static Map<String,String> refreshTokenMap =  new HashMap<String, String>();
+    static Map<String,String> refreshTokenMap = new HashMap<>();
 
-    static Map<String,String> appMap =  new HashMap<String, String>();
+    static Map<String,String> appMap = new HashMap<>();
 
-    static Map<String,String> reqidMap =  new HashMap<String, String>();
+    static Map<String,String> reqidMap = new HashMap<>();
 
 
     static {
@@ -80,7 +80,7 @@ public class OauthServlet extends HttpServlet {
 
                 codeScopeMap.put(code,rscope);//授权范围与授权码做绑定
 
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("code",code);
 
                 String toAppUrl = URLParamsUtil.appendParams(redirectUri,params);//构造第三方软件的回调地址，并重定向到该地址

@@ -67,7 +67,7 @@ public class RSAJwt {
         payloadMap.put("sub", "Tom");
         payloadMap.put("iss", "--");
 
-        String compactJws = Jwts.builder().setHeaderParams(headerMap).setClaims(payloadMap).signWith(getPrivateKey(key.get("pri")), SignatureAlgorithm.HS256).compact();
+        String compactJws = Jwts.builder().setHeaderParams(headerMap).setClaims(payloadMap).signWith(SignatureAlgorithm.RS256, getPrivateKey(key.get("pri"))).compact();
 
         System.out.println(compactJws);
         return compactJws;
@@ -98,7 +98,7 @@ public class RSAJwt {
     public static Map<String, byte[]> generateKey(String password) throws IOException, NoSuchAlgorithmException {
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
         SecureRandom secureRandom = new SecureRandom(password.getBytes());
-        keyPairGenerator.initialize(1024, secureRandom);
+        keyPairGenerator.initialize(2048, secureRandom);
         KeyPair keyPair = keyPairGenerator.genKeyPair();
         byte[] publicKeyBytes = keyPair.getPublic().getEncoded();
         byte[] privateKeyBytes = keyPair.getPrivate().getEncoded();
